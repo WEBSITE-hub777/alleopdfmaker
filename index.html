@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PDF Maker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    body {
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+    }
+
+    textarea, input, button {
+      margin: 10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body style="background:rgba(88,98,220,0.792);>
+
+<h2 style="color:white;">PDF Maker </h2>
+
+<textarea id="text" placeholder="Enter your text..." style="width:80%; height:100px;"></textarea>
+<input type="file"id="imageInput">
+<br>
+
+<input type="text" id="filename" placeholder="Enter file name">
+
+<button onclick="makePDF()">Download PDF</button>
+
+<script>
+function makePDF() {
+  const { jsPDF } = window.jspdf;
+  let doc = new jsPDF();
+
+  let text = document.getElementById("text").value;
+  let name = document.getElementById("filename").value || "myfile";
+
+  // Same RGB background in PDF
+  doc.setFillColor(255, 0, 0);
+  doc.rect(0, 0, 210, 297, "F");
+
+  doc.setTextColor(0,0,0);
+  doc.text(text, 10, 20);
+
+  let file = document.getElementById("imageInput").files[0];
+  if (file) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+      doc.addImage(e.target.result, "JPEG", 10, 50, 100, 80);
+      doc.save(name + ".pdf");
+    };
+    reader.readAsDataURL(file);
+  } else {
+    doc.save(name + ".pdf");
+  }
+}
+</script>
+
+</body>
+</html>
