@@ -5,6 +5,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- ✅ jsPDF library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -14,35 +17,24 @@
       text-align: center;
     }
 
-    /* TOP SECTION */
     .hero {
       padding: 60px 20px;
     }
 
-    .hero h1 {
-      font-size: 36px;
-      margin: 0;
-    }
-
-    .hero p {
-      margin-top: 10px;
-      font-size: 16px;
-    }
-
-    /* TOOL */
     .tool {
       padding: 30px;
     }
 
-    input, button {
+    input, textarea, button {
       padding: 10px;
       margin: 10px;
       border-radius: 8px;
       border: none;
+      width: 250px;
     }
 
-    input {
-      width: 250px;
+    textarea {
+      height: 80px;
     }
 
     button {
@@ -56,82 +48,56 @@
       color: white;
     }
 
-    /* FOOTER */
     .footer {
       background: black;
-      color: white;
-      padding: 40px 20px;
+      padding: 40px;
       margin-top: 50px;
-    }
-
-    .footer h2 {
-      font-size: 26px;
-      margin: 0;
-    }
-
-    .footer p {
-      font-size: 14px;
-      margin: 10px 0;
-      color: #ccc;
-    }
-
-    .copy {
-      margin-top: 20px;
-      font-size: 13px;
-      color: #888;
-    }
-
-    /* MOBILE */
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 24px;
-      }
-
-      input, button {
-        width: 90%;
-      }
     }
   </style>
 </head>
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <h1>Welcome to Alleo 🚀</h1>
   <p>Create, Customize and Download Your PDF Easily</p>
-  <p>Alleo PDF Maker helps you generate high-quality PDFs with images and text in seconds.</p>
 </div>
 
-<!-- TOOL -->
 <div class="tool">
-  <h2>Upload Image & Create PDF 📄</h2>
 
-  <input type="file"><br>
-  <input type="text" placeholder="Enter your text"><br>
+  <h2>Create PDF 📄</h2>
 
-  <button>Create PDF</button>
+  <input type="text" id="name" placeholder="PDF File Name"><br>
+
+  <textarea id="text" placeholder="Write text for PDF..."></textarea><br>
+
+  <button onclick="createPDF()">Create & Download PDF</button>
+
 </div>
 
-<!-- FOOTER -->
+<script>
+function createPDF() {
+  const { jsPDF } = window.jspdf;
+
+  let doc = new jsPDF();
+
+  let text = document.getElementById("text").value;
+  let name = document.getElementById("name").value || "alleo";
+
+  if (!text) {
+    alert("Write something first!");
+    return;
+  }
+
+  doc.text(text, 10, 20);
+  doc.save(name + ".pdf");
+}
+</script>
+
 <div class="footer">
-
   <h2>Alleo PDF Maker 📄</h2>
-
-  <p>
-    Alleo PDF Maker is a powerful and free online tool that allows users to create 
-    professional PDFs from images and text. It is fast, simple, and easy to use.
-  </p>
-
-  <p>
-    Our mission is to provide free tools for everyone without any complexity.
-    More features and tools will be added in the future.
-  </p>
-
-  <p class="copy">
-    © 2026 Alleo | All Rights Reserved 🔒
-  </p>
-
+  <p>Free and powerful PDF tool for everyone.</p>
+  <p>© 2026 Alleo | All Rights Reserved 🔒</p>
 </div>
 
 </body>
