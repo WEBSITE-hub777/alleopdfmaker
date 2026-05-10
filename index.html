@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Alleo PDF Maker</title>
+
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:sans-serif;
+      background:linear-gradient(to bottom right,#4a90e2,#6a5acd);
+      color:white;
+      text-align:center;
+    }
+
+    /* navbar */
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px;
+      background:rgba(0,0,0,0.2);
+      backdrop-filter:blur(10px);
+      position:sticky;
+      top:0;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin:10px;
+      transition:0.3s;
+      font-size:18px;
+    }
+
+    nav a:hover{
+      color:yellow;
+    }
+
+    /* hero */
+
+    .hero{
+      padding:80px 20px;
+    }
+
+    .hero h1{
+      font-size:50px;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:20px;
+      margin-bottom:30px;
+    }
+
+    .start-btn{
+      background:white;
+      color:#4a90e2;
+      border:none;
+      padding:15px 35px;
+      border-radius:12px;
+      font-size:18px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    .start-btn:hover{
+      background:black;
+      color:white;
+      transform:scale(1.08);
+      box-shadow:0 0 20px cyan;
+    }
+
+    /* cards */
+
+    .features{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:20px;
+      padding:40px 20px;
+    }
+
+    .card{
+      width:250px;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(10px);
+      border-radius:20px;
+      padding:25px;
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 20px cyan;
+    }
+
+    .card h3{
+      margin-bottom:15px;
+      font-size:24px;
+    }
+
+    .card p{
+      line-height:1.5;
+    }
+
+    /* tool */
+
+    .tool{
+      background:white;
+      color:black;
+      margin:40px auto;
+      width:90%;
+      max-width:500px;
+      padding:40px 20px;
+      border-radius:25px;
+      box-shadow:0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .tool h2{
+      margin-bottom:20px;
+    }
+
+    input,textarea{
+      width:90%;
+      padding:15px;
+      margin:10px;
+      border:none;
+      border-radius:12px;
+      background:#f0f0f0;
+      font-size:16px;
+    }
+
+    textarea{
+      height:120px;
+      resize:none;
+    }
+
+    button{
+      background:#4a90e2;
+      color:white;
+      border:none;
+      padding:15px 30px;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:17px;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:black;
+      transform:scale(1.05);
+    }
+
+    #fileName{
+      margin-top:10px;
+      color:#333;
+      font-weight:bold;
+    }
+
+    /* footer */
+
+    footer{
+      margin-top:60px;
+      padding:40px;
+      background:black;
+    }
+
+    footer p{
+      margin:10px;
+    }
+
+    /* mobile */
+
+    @media(max-width:700px){
+
+      .hero h1{
+        font-size:35px;
+      }
+
+      .features{
+        flex-direction:column;
+        align-items:center;
+      }
+
+      nav{
+        flex-direction:column;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- navbar -->
+
+  <nav>
+
+    <div class="logo">
+      Alleo PDF
+    </div>
+
+    <div>
+
+      <a href="">Home</a>
+
+      <a href="#tool">
+        Create PDF
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- hero -->
+
+  <div class="hero">
+
+    <h1>
+      Create Beautiful PDFs Easily 📄
+    </h1>
+
+    <p>
+      Fast • Modern • Easy To Use
+    </p>
+
+    <a href="#tool">
+
+      <button class="start-btn">
+        Start Now 🚀
+      </button>
+
+    </a>
+
+  </div>
+
+  <!-- features -->
+
+  <div class="features">
+
+    <div class="card">
+
+      <h3>⚡ Fast</h3>
+
+      <p>
+        Create PDFs instantly without delay.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>📱 Mobile Friendly</h3>
+
+      <p>
+        Works perfectly on phones and PC.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🎨 Modern UI</h3>
+
+      <p>
+        Stylish design with glow effects.
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>🔒 Secure</h3>
+
+      <p>
+        Your data stays inside browser.
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- pdf tool -->
+
+  <div class="tool" id="tool">
+
+    <h2>Create PDF 📄</h2>
+
+    <!-- pdf name -->
+
+    <input
+    type="text"
+    id="name"
+    placeholder="Enter PDF File Name">
+
+    <br>
+
+    <!-- pdf text -->
+
+    <textarea
+    id="text"
+    placeholder="Write your PDF text here...">
+    </textarea>
+
+    <br>
+
+    <!-- file upload -->
+
+    <input
+    type="file"
+    id="fileInput">
+
+    <br>
+
+    <button onclick="uploadFile()">
+
+      Upload File 📂
+
+    </button>
+
+    <p id="fileName"></p>
+
+    <br>
+
+    <!-- create pdf -->
+
+    <button onclick="createPDF()">
+
+      Create & Download PDF
+
+    </button>
+
+  </div>
+
+  <!-- javascript -->
+
+  <script>
+
+    function createPDF(){
+
+      const { jsPDF } = window.jspdf;
+
+      let doc = new jsPDF();
+
+      let text =
+      document.getElementById("text").value;
+
+      let name =
+      document.getElementById("name").value
+      || "alleo-pdf";
+
+      if(text===""){
+
+        alert("Please write something!");
+
+        return;
+
+      }
+
+      doc.text(text,10,20);
+
+      doc.save(name + ".pdf");
+
+    }
+
+    function uploadFile(){
+
+      let file =
+      document.getElementById("fileInput").files[0];
+
+      if(file){
+
+        document.getElementById("fileName").innerHTML =
+
+        "Uploaded File: " + file.name;
+
+      }
+
+      else{
+
+        alert("Please select a file!");
+
+      }
+
+    }
+
+  </script>
+
+  <!-- footer -->
+
+  <footer id="about">
+
+    <h2>Alleo PDF Maker</h2>
+
+    <p>
+      Easy PDF creation for everyone 🚀
+    </p>
+
+    <p>
+      📧 alleohelp@gmail.com
+    </p>
+
+    <p>
+      Fast • Secure • Modern
+    </p>
+
+    <p>
+      © 2026 Alleo | All Rights Reserved
+    </p>
+
+  </footer>
+
+</body>
+</html>
